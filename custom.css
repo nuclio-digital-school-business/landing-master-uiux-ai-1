@@ -51,7 +51,8 @@
   .hero .edition{font-size:19px;font-weight:600;color:var(--yellow);margin-bottom:18px;}
   .hero p.lead{font-size:18px;font-weight:400;max-width:560px;margin-bottom:16px;color:#f0f0f0;}
   .hero .lic{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:#e2e2e2;margin:20px 0 0;}
-  .lic-txt{background:#fff;color:#141414;padding:4px 11px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:-.01em;}
+  .lic-txt{background:#fff;color:#141414;padding:4px 11px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:6px;}
+  .lic-img{height:13px;width:auto;object-fit:contain;}
 
   /* Form card */
   .form-card{background:#fff;border-radius:20px;padding:26px 26px 22px;box-shadow:0 24px 60px rgba(0,0,0,.45);color:var(--ink);}
@@ -72,14 +73,18 @@
   .fact .v{font-size:16px;font-weight:600;line-height:1.4;letter-spacing:-.01em;}
 
   /* ===== Trust ===== */
-  .trust{background:var(--grey1);}
-  .trust .eyebrow{color:var(--ink);justify-content:center;}
-  .trust p.subtxt{text-align:center;color:#555;max-width:640px;margin:0 auto 28px;font-size:15.5px;}
-  .logo-wall{display:flex;flex-wrap:wrap;gap:22px 42px;align-items:center;justify-content:center;}
+  .trust{background:#1b1b1b;}
+  .trust .eyebrow{color:#fff;justify-content:center;}
+  .trust p.subtxt{text-align:center;color:#c4c4c4;max-width:640px;margin:0 auto 28px;font-size:15.5px;}
+  .logo-wall{display:flex;flex-wrap:wrap;gap:16px 20px;align-items:center;justify-content:center;}
   .logo-txt{font-weight:700;font-size:22px;letter-spacing:-.02em;color:#9a9a9a;}
+  .logo-img{height:24px;width:auto;object-fit:contain;}
+  .logo-img-sm{height:18px;width:auto;object-fit:contain;}
+  .logo-badge{background:#fff;border-radius:10px;padding:12px 20px;display:inline-flex;align-items:center;justify-content:center;}
   .partners{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:26px;flex-wrap:wrap;}
-  .partners span.lbl{font-size:13px;color:#888;}
+  .partners span.lbl{font-size:13px;color:#aaa;}
   .partners .logo-txt{font-size:19px;color:#3a3a3a;}
+  .partners .logo-badge{padding:8px 16px;}
 
   /* ===== Propuesta de valor ===== */
   .value{background:#fff;}
@@ -143,6 +148,8 @@
   .tools p.subtxt{color:#c4c4c4;max-width:600px;margin:0 auto 30px;font-size:15.5px;font-weight:400;}
   .tool-row{display:flex;flex-wrap:wrap;gap:18px 40px;align-items:center;justify-content:center;}
   .tool-txt{font-weight:700;font-size:22px;letter-spacing:-.02em;color:#fff;opacity:.92;}
+  .tool-badge{background:#fff;border-radius:12px;padding:12px 22px;display:inline-flex;align-items:center;justify-content:center;}
+  .tool-badge img{height:22px;width:auto;object-fit:contain;}
 
   /* ===== Profesores ===== */
   .profes{background:var(--grey1);}
