@@ -1,77 +1,21 @@
 // ===== HubSpot forms =====
-function styleHubspotForm(target){
-  var container = document.querySelector(target);
-  if(!container) return;
-  var applyStyles = function(){
-    var form = container.querySelector('form');
-    if(!form) return;
-
-    // Inputs y selects
-    form.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=number], select, textarea').forEach(function(el){
-      el.style.width = '100%';
-      el.style.padding = '13px 15px';
-      el.style.border = '1px solid #d5d5d5';
-      el.style.borderRadius = '9px';
-      el.style.fontSize = '15px';
-      el.style.fontFamily = 'inherit';
-      el.style.color = '#141414';
-      el.style.background = '#fff';
-      el.style.boxSizing = 'border-box';
-      el.style.marginBottom = '2px';
-      el.style.outline = 'none';
-    });
-
-    // Labels
-    form.querySelectorAll('label').forEach(function(el){
-      el.style.fontSize = '13.5px';
-      el.style.fontWeight = '600';
-      el.style.color = '#333';
-      el.style.marginBottom = '4px';
-      el.style.display = 'block';
-      el.style.fontFamily = 'inherit';
-    });
-
-    // Campos (contenedor de cada label+input)
-    form.querySelectorAll('.hs-form-field, .hs_form_field, .field').forEach(function(el){
-      el.style.marginBottom = '14px';
-    });
-
-    // Botón
-    var btn = form.querySelector('.hs-button, input[type=submit]');
-    if(btn){
-      btn.style.background = '#FFC630';
-      btn.style.color = '#141414';
-      btn.style.border = '0';
-      btn.style.borderRadius = '50px';
-      btn.style.padding = '15px 26px';
-      btn.style.fontWeight = '700';
-      btn.style.fontSize = '16px';
-      btn.style.cursor = 'pointer';
-      btn.style.width = '100%';
-      btn.style.fontFamily = 'inherit';
-      btn.style.marginTop = '4px';
-    }
-
-    // Mensajes legales / consentimiento
-    form.querySelectorAll('.legal-consent-container, .hs-richtext, .hs-form-booleancheckbox-display').forEach(function(el){
-      el.style.fontSize = '11px';
-      el.style.color = '#8a8a8a';
-      el.style.lineHeight = '1.45';
-      el.style.marginTop = '11px';
-    });
-
-    // Errores de validación
-    form.querySelectorAll('.hs-error-msgs label').forEach(function(el){
-      el.style.color = '#e0393e';
-      el.style.fontSize = '12px';
-      el.style.fontWeight = '500';
-    });
-  };
-
-  var obs = new MutationObserver(applyStyles);
-  obs.observe(container, {childList:true, subtree:true, attributes:true});
-  applyStyles();
-}
+// IMPORTANTE: este formulario carga dentro de un <iframe> de HubSpot.
+// Por seguridad del navegador (cross-origin), el CSS y JS de esta página
+// NO pueden estilizar lo que hay dentro del iframe. La única vía soportada
+// es pasar un string de CSS en el propio hbspt.forms.create(), que HubSpot
+// inyecta dentro del iframe desde su lado.
+var HS_FORM_CSS = `
+  body{font-family:'Manrope',-apple-system,Arial,sans-serif;}
+  .hs-form-field{margin-bottom:14px;}
+  .hs-form-field label{font-size:13.5px;font-weight:600;color:#333;margin-bottom:4px;display:block;}
+  .hs-input{width:100%;padding:13px 15px;border:1px solid #d5d5d5;border-radius:9px;font-size:15px;color:#141414;background:#fff;box-sizing:border-box;}
+  .hs-input:focus{outline:none;border-color:#FFC630;box-shadow:0 0 0 3px rgba(255,198,48,.25);}
+  .hs-button{background:#FFC630;color:#141414;border:0;border-radius:50px;padding:15px 26px;font-weight:700;font-size:16px;cursor:pointer;width:100%;margin-top:4px;}
+  .hs-button:hover{background:#ffcf4a;}
+  .legal-consent-container, .hs-richtext{font-size:11px;color:#8a8a8a;line-height:1.45;}
+  .hs-error-msgs label{color:#e0393e;font-size:12px;font-weight:500;}
+  .hs-form-booleancheckbox-display{font-size:12px;color:#555;}
+`;
 
 function createNuclioForm(target){
   if (window.hbspt && window.hbspt.forms){
@@ -80,10 +24,10 @@ function createNuclioForm(target){
       formId:"30035742-033a-4945-90c1-f2d8d9928b72",
       region:"na1",
       target:target,
+      css: HS_FORM_CSS,
       onFormReady:function(){
         var t=document.querySelector(target);
         if(t){ var fb=t.parentNode.querySelector('.lead-form'); if(fb) fb.style.display='none'; }
-        styleHubspotForm(target);
       }
     });
   }
