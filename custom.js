@@ -38,6 +38,23 @@ function createNuclioForm(target){
     });
   }
 }
+
+// ===== Form del plan de estudios (Temario) — mismo estilo, formId propio =====
+var temarioFormCreated = false;
+function createTemarioForm(){
+  if (temarioFormCreated) return;
+  if (window.hbspt && window.hbspt.forms){
+    temarioFormCreated = true;
+    hbspt.forms.create({
+      portalId:"5009969",
+      formId:"27ddf761-1de9-4877-9694-305f336f730f",
+      region:"na1",
+      target:"#hs-form-temario",
+      css: HS_FORM_CSS
+    });
+  }
+}
+
 function initForms(){
   createNuclioForm("#hs-form-hero");
   createNuclioForm("#hs-form-signup");
@@ -54,6 +71,22 @@ else { window.addEventListener('load', initForms); }
   function open(){ overlay.classList.add('is-open'); if(stickyBtn) stickyBtn.classList.remove('is-pop'); }
   function close(){ overlay.classList.remove('is-open'); }
   document.querySelectorAll('.js-open-form').forEach(function(b){ b.addEventListener('click', open); });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+})();
+
+// ===== Modal del temario (Descargar plan de estudios) =====
+(function(){
+  var overlay = document.getElementById('temario-overlay');
+  var closeBtn = document.getElementById('temario-close');
+  function open(){
+    overlay.classList.add('is-open');
+    if (window.hbspt && window.hbspt.forms){ createTemarioForm(); }
+    else { window.addEventListener('load', createTemarioForm); }
+  }
+  function close(){ overlay.classList.remove('is-open'); }
+  document.querySelectorAll('.js-open-temario-form').forEach(function(b){ b.addEventListener('click', open); });
   closeBtn.addEventListener('click', close);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
